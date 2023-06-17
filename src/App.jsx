@@ -4,6 +4,7 @@ import Works from './components/Works'
 import Who from './components/Who'
 import { styled } from 'styled-components'
 import Test from './components/Test'
+import Test2 from './components/Test2'
 
 const Container = styled.div`
   height: 100vh;
@@ -26,7 +27,8 @@ function App() {
         <Who />
         <Works />
         <Contact />
-        <Test />
+        {/* <Test /> */}
+        <Test2 />
     </Container>
   )
 }

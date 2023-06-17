@@ -3,7 +3,7 @@ import { OrbitControls } from '@react-three/drei'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import React, { useState, useRef } from 'react'
 import { styled } from 'styled-components'
-import { Box, useGLTF } from '@react-three/drei'
+import { Box, useGLTF, Environment, useFBX } from '@react-three/drei'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { easing } from 'maath';
 import { useLoader } from '@react-three/fiber'
@@ -14,10 +14,27 @@ const Container = styled.div`
     scroll-snap-align: center;
 `
 
+const HelloKittyFBX = () => {
+    const fbx = useFBX("joy.fbx");
+    const mesh = useRef();
+    const [dummy] = useState(() => new THREE.Object3D());
+
+    useFrame((state, dt) => {
+        mesh.current.position.set(0, 0.4, 0); // Set the pivot position
+        mesh.current.updateMatrix(); // not really needed
+
+        dummy.lookAt(state.pointer.x, state.pointer.y, 1);
+        easing.dampQ(mesh.current.quaternion, dummy.quaternion, 0.15, dt);
+    })
+
+    return (
+        <primitive ref={mesh} object={fbx} scale={0.01} />
+    )
+};
+
 const Test = () => {
     const [hovered, setHover] = useState(false);
     const [active, setActive] = useState(false)
-    const gltf = useLoader(GLTFLoader, './myHead.glb')
 
   return (
     <Container>
@@ -45,11 +62,13 @@ const Test = () => {
              <mesh  position={[0, 0, -0.5]}>
                 {/* <planeGeometry args={[5, 5, 64, 64]} /> */}
                 {/* <primitive object={gltf.scene} /> */}
-                <boxGeometry />
-                <meshNormalMaterial />
+                {/* <boxGeometry /> */}
+                {/* <meshNormalMaterial /> */}
             </mesh>
 
-            <JustinHeadPhones />
+            <HelloKittyFBX />
+            {/* <JustinHeadPhones /> */}
+            {/* <Environment preset='sunset' background/> */}
 
         </Canvas>
     </Container>
@@ -84,68 +103,11 @@ const Scene = () => {
     )
 }
 
-const Box2 = () => {
-    const meshRef = useRef();
-
-    // useFrame(({ mouse }) => {
-    //     if (meshRef.current) {
-    //         // meshRef.current.rotation.z += 0.01; //rotates automatically
-    //         const { clientX, clientY } = mouse;
-    //         const mousePosition = {
-    //             x: (clientX / window.innerWidth) * 2 - 1,
-    //             y: -(clientY / window.innerHeight) * 2 + 1,
-    //         };
-    //         //Convert mouse position to 3D coordinatess relative to the camera
-    //         const vector = new window.THREE.Vector3(
-    //             mousePosition.x,
-    //             mousePosition.y,
-    //             0.5
-    //         );
-    //         vector.unproject(meshRef.current.parent);
-
-    //         //Make the mesh face the mouse pointer
-    //         meshRef.current.lookAt(vector);
-    //     }
-    // })
-
-    return (
-        <Box ref={meshRef} args={[1, 2, 1]} position={[0, 1, 0]} >
-            {/* <boxBufferGeometry args={[1, 2, 1]} /> */}
-            <meshStandardMaterial color={"blue"} />
-        </Box>
-    )
-}
-
-function JustinHead(props) {
-    const mesh = useRef();
-    const { nodes } = useGLTF('./myHead.glb');
-    const [dummy] = useState(() => new THREE.Object3D());
-
-    useFrame((state, dt) => {
-        dummy.lookAt(state.pointer.x, state.pointer.y, 1);
-        easing.dampQ(mesh.current.quaternion, dummy.quaternion, 0.15, dt);
-    })
-
-    return (
-        <mesh position={[0, 1, 0]} ref={mesh} geometry={nodes.geometry} {...props}>
-            <boxGeometry />
-            <meshNormalMaterial />
-        </mesh>
-    )
-}
 
 function JustinHead2(props) {
     const mesh = useRef();
     const { nodes, materials } = useGLTF('/myHead.glb');
     const [dummy] = useState(() => new THREE.Object3D());
-
-    // useFrame((state, dt) => {
-    //     mesh.current.position.set(0, 0.4, 0); // Set the pivot position
-    //     mesh.current.updateMatrix(); // not really needed
-
-    //     dummy.lookAt(state.pointer.x, state.pointer.y, 1);
-    //     easing.dampQ(mesh.current.quaternion, dummy.quaternion, 0.15, dt);
-    // })
 
     return (
         <group ref={mesh} {...props} dispose={null}>
@@ -162,22 +124,6 @@ function JustinHead2(props) {
         </group>
     )
 }
-
-// function JustinHead2(props) {
-//     const { nodes, materials } = useGLTF('/myHead.glb');
-//     return (
-//         <group {...props} dispose={null}>
-//             <mesh 
-//                 castShadow
-//                 receiveShadow
-//                 geometry={nodes.Group1.geometry}
-//                 material={materials["default"]}
-//                 rotation={[-Math.PI / 2, 0, 0]}
-//                 scale={1}
-//                 />
-//         </group>
-//     )
-// }
 
 function HeadPhones(props) {
     const { nodes, materials } = useGLTF("/headphones_free.glb");

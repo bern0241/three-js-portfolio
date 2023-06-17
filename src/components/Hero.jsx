@@ -1,6 +1,10 @@
 import React from 'react'
 import { styled } from 'styled-components'
 import Navbar from './Navbar'
+import Cube from './Cube'
+import { TextureLoader } from 'three/src/loaders/TextureLoader'
+import { Canvas, useLoader  } from '@react-three/fiber'
+import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei'
 
 const Section = styled.div`
   height: 100vh;
@@ -94,6 +98,8 @@ const Img = styled.img`
 `
 
 const Hero = () => {
+  const colorMap = useLoader(TextureLoader, 'jesus.jpg')
+
   return (
     <Section>
         <Navbar />
@@ -108,7 +114,19 @@ const Hero = () => {
               <Button>Learn More</Button>
             </Left>
             <Right> 
-              {/* 3d model */}
+                <Canvas>
+                     <OrbitControls enablePan={false} enableZoom={false} />
+                    <ambientLight intensity={1}/>
+                    <directionalLight position={[1, 2, 3]} />
+                    <Sphere args={[1, 100, 200]} scale={2.4} >
+                        <MeshDistortMaterial attach="material" distort={0.5} speed={2} color="#3d1c56"/>
+                              {/* <meshStandardMaterial attach="material" map={colorMap} /> */}
+                    </Sphere>
+                    {/* <mesh>
+                      <sphereGeometry />
+                      <meshStandardMaterial map={colorMap} />
+                    </mesh> */}
+                </Canvas>
               <Img src="./img/moon.png"/>
             </Right>
         </Container>

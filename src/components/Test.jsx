@@ -4,9 +4,15 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import React, { useState, useRef } from 'react'
 import { styled } from 'styled-components'
 import { Box, useGLTF, Environment, useFBX } from '@react-three/drei'
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+// import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { easing } from 'maath';
 import { useLoader } from '@react-three/fiber'
+import { GLTFLoader  } from 'three-stdlib';
+//meshes
+// import JesusSword, { JesusSwingFBX } from './JesusSword';
+import MiniJesusSwing from './Models/MiniJesusSwing';
+import SwordSwing from './Models/SwordSwing';
+import MiniJesus from './Models/MiniJesus';
 
 const Container = styled.div`
     width: 100%;
@@ -39,9 +45,10 @@ const Test = () => {
   return (
     <Container>
         {/* <Canvas camera={{ position: [1, -4, 2.5] }}> */}
-        <Canvas >
-            {/* <OrbitControls enableZoom={false} />
-            <mesh rotation={[10, 10, 10]} 
+        {/* <Canvas camera={{ position: [1, -4, 2.5] }}> */}
+        <Canvas camera={{ position: [0.5, 0.5, 1.5], fov: 50 }}>
+            <OrbitControls enableZoom={false} />
+            {/* <mesh rotation={[10, 10, 10]} 
                 onPointerOver={(e) => setHover(true)}
                 onPointerOut={(e) => setHover(false)}
                 onClick={(e) => setActive(!active)}
@@ -57,8 +64,8 @@ const Test = () => {
             {/* <Box2 /> */}
             {/* <Scene />
              */}
-             <ambientLight intensity={1}/>
-            <pointLight position={[5, 5, 5]}/>
+            <ambientLight castShadow />
+              <directionalLight position={[-4, 4, 4]} castShadow shadow-mapSize={1024} />
              <mesh  position={[0, 0, -0.5]}>
                 {/* <planeGeometry args={[5, 5, 64, 64]} /> */}
                 {/* <primitive object={gltf.scene} /> */}
@@ -66,8 +73,25 @@ const Test = () => {
                 {/* <meshNormalMaterial /> */}
             </mesh>
 
-            <HelloKittyFBX />
+            {/* <AlembicModel /> */}
+            {/* <HelloKittyFBX /> */}
+
             {/* <JustinHeadPhones /> */}
+            {/* <JesusSword /> */}
+            {/* <JesusSwingFBX />
+             */}
+             {/* <group position={[0, -0.4, 0]}>
+              <MiniJesusSwing />
+              <SwordSwing />
+             </group> */}
+
+             <MiniJesus position={[0, -0.4, 0]} scale={7}/>
+
+             <mesh rotation={[-1.57, 0, 0]} position={[0, -.4, 0]} receiveShadow>
+              <planeBufferGeometry args={[2, 2, 1, 1]} />
+              < meshStandardMaterial />
+            </mesh>
+            
             {/* <Environment preset='sunset' background/> */}
 
         </Canvas>
@@ -124,6 +148,12 @@ function JustinHead2(props) {
         </group>
     )
 }
+
+// function AlembicModel({ path }) {
+//   const gltf = useLoader(GLTFLoader, "/flag.abc");
+  
+//   return <primitive object={gltf.scene} />;
+// }
 
 function HeadPhones(props) {
     const { nodes, materials } = useGLTF("/headphones_free.glb");
@@ -195,7 +225,7 @@ const JustinHeadPhones = (props) => {
 
     return (
         <group ref={mesh} {...props} dispose={null}>
-        < JustinHead2 />
+        <JustinHead2 />
         <HeadPhones scale={[0.06, 0.06, 0.06]} rotation={[0.3, 0, 0]}
             position={[0.1, -1.9, -0.9]} />
         </group>

@@ -13,12 +13,14 @@
     "@emailjs/browser": "^3.11.0",
     "@react-three/drei": "^9.74.16",
     "@react-three/fiber": "^8.13.3",
+    "@react-three/gltfjsx": "^4.3.4",
     "maath": "^0.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-simple-maps": "^3.0.0",
     "styled-components": "^6.0.0-rc.3",
-    "three": "^0.153.0"
+    "three": "^0.153.0",
+    "three-stdlib": "^2.23.10"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",

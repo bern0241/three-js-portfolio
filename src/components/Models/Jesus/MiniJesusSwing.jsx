@@ -11,7 +11,7 @@ import * as THREE from 'three';
 
 const MiniJesusSwing = forwardRef((props, ref) => {
   const group = useRef()
-  const { nodes, materials, animations } = useGLTF('/../../../public/JesusSwing/MiniJesusSwing-transformed.glb')
+  const { nodes, materials, animations } = useGLTF('/../../../public/Models/JesusSwing/JesusSwing-transformed.glb')
   const { actions, names, mixer } = useAnimations(animations, group)
   
   // const [startAnim, setStartAnim] = useState(true);
@@ -19,32 +19,15 @@ const MiniJesusSwing = forwardRef((props, ref) => {
   let time = 0;
 
   useEffect(() => {
-    // actions[names[1]].paused = true;
     actions[names[0]].play();
-    actions[names[0]].timeScale = 0;
-    // actions[names[0]].setLoop(THREE.LoopOnce, 1);
+    actions[names[0]].timeScale = 1;
   }, [])
-
-
-  // useEffect(() => {
-  //   const playIdle = (e) => {
-  //     actions[names[1]].play();
-  //   };
-  //   mixer.addEventListener('finished', playIdle);
-  //   return () => {
-  //     mixer.removeEventListener('finished', playIdle);
-  //   };
-  //   }, [])
-  ;
-
 
     useFrame((state) => {
       // const time = state.clock.getElapsedTime();
         time = time + 0.01;
-
       if (time > .6) {
-        // setStartAnim(false);
-        actions[names[0]].timeScale = 0;
+        // actions[names[0]].timeScale = 0;
       }
     });
     
@@ -52,14 +35,9 @@ const MiniJesusSwing = forwardRef((props, ref) => {
     useImperativeHandle(ref, () => ({
       playAnim() {
         console.log("child function called from parent");
-        // setEndAnimation(true);
-        // actions[names[1]].timeScale = 0;
-        time = 0;
-        actions[names[0]].timeScale = 1.7;
-        actions[names[0]].reset();
-      // actions[names[0]].reset();
-      // actions[names[0]].time = 2;
-      // actions[names[1]].paused = true;
+        // time = 0;
+        // actions[names[0]].timeScale = 1.7;
+        // actions[names[0]].reset();
     }
   }));
 
@@ -107,13 +85,13 @@ const MiniJesusSwing = forwardRef((props, ref) => {
           <primitive object={nodes.Hip_J} />
         </group>
         <group name="Mini_Jesus" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
-          <skinnedMesh name="Mesh" geometry={nodes.Mesh.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh.skeleton} />
-          <skinnedMesh name="Mesh_1" geometry={nodes.Mesh_1.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh_1.skeleton} />
-          <skinnedMesh name="Mesh_2" geometry={nodes.Mesh_2.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh_2.skeleton} />
-          <skinnedMesh name="Mesh_3" geometry={nodes.Mesh_3.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh_3.skeleton} />
-          <skinnedMesh name="Mesh_4" geometry={nodes.Mesh_4.geometry} material={materials.Face} skeleton={nodes.Mesh_4.skeleton} />
-          <skinnedMesh name="Mesh_5" geometry={nodes.Mesh_5.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh_5.skeleton} />
-          <skinnedMesh name="Mesh_6" geometry={nodes.Mesh_6.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh_6.skeleton} />
+          <skinnedMesh name="Mesh009" geometry={nodes.Mesh009.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh009.skeleton} />
+          <skinnedMesh name="Mesh009_1" geometry={nodes.Mesh009_1.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh009_1.skeleton} />
+          <skinnedMesh name="Mesh009_2" geometry={nodes.Mesh009_2.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh009_2.skeleton} />
+          <skinnedMesh name="Mesh009_3" geometry={nodes.Mesh009_3.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh009_3.skeleton} />
+          <skinnedMesh name="Mesh009_4" geometry={nodes.Mesh009_4.geometry} material={materials['Face.003']} skeleton={nodes.Mesh009_4.skeleton} />
+          <skinnedMesh name="Mesh009_5" geometry={nodes.Mesh009_5.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh009_5.skeleton} />
+          <skinnedMesh name="Mesh009_6" geometry={nodes.Mesh009_6.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh009_6.skeleton} />
         </group>
       </group>
     </group>
@@ -121,6 +99,6 @@ const MiniJesusSwing = forwardRef((props, ref) => {
 });
 
 
-useGLTF.preload('/../../../public/JesusSwing/MiniJesusSwing-transformed.glb')
+useGLTF.preload('/../../../public/Models/JesusSwing/JesusSwing-transformed.glb')
 
 export default MiniJesusSwing;

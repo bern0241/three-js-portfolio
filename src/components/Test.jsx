@@ -10,9 +10,10 @@ import { useLoader } from '@react-three/fiber'
 import { GLTFLoader  } from 'three-stdlib';
 //meshes
 // import JesusSword, { JesusSwingFBX } from './JesusSword';
-import MiniJesusSwing from './Models/MiniJesusSwing';
-import SwordSwing from './Models/SwordSwing';
-import MiniJesus from './Models/MiniJesus';
+import MiniJesusSwing from './Models/Jesus/MiniJesusSwing';
+import SwordSwing from './Models/Jesus/SwordSwing';
+import MiniJesus from './Models/Jesus/MiniJesus';
+import Mario from './Models/Mario/Mario';
 
 const Container = styled.div`
     width: 100%;
@@ -86,6 +87,7 @@ const Test = () => {
              </group> */}
 
              <MiniJesus position={[0, -0.4, 0]} scale={7}/>
+             {/* <Mario position={[0, -0.4, 0]} scale={7}/> */}
 
              <mesh rotation={[-1.57, 0, 0]} position={[0, -.4, 0]} receiveShadow>
               <planeBufferGeometry args={[2, 2, 1, 1]} />

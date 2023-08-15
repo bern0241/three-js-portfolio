@@ -10,7 +10,7 @@ import { useFrame } from '@react-three/fiber'
 
 const Guitar = forwardRef((props, ref) => {
   const group = useRef()
-  const { nodes, materials, animations } = useGLTF('/../../../public/Models/Mario/Guitar-transformed.glb')
+  const { nodes, materials, animations } = useGLTF('/Models/Mario/Guitar-transformed.glb')
   const { actions, names } = useAnimations(animations, group)
 
   let time = 0;
@@ -61,6 +61,6 @@ const Guitar = forwardRef((props, ref) => {
   )
 })
 
-useGLTF.preload('/../../../public/Models/Mario/Guitar-transformed.glb')
+useGLTF.preload('/Models/Mario/Guitar-transformed.glb')
 
 export default Guitar;

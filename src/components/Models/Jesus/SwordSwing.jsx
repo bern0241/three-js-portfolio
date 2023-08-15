@@ -10,7 +10,7 @@ import { useFrame } from '@react-three/fiber'
 
 const SwordSwing = forwardRef((props, ref) => {
   const group = useRef()
-  const { nodes, materials, animations } = useGLTF('/../../../public/Models/JesusSwing/Sword-transformed.glb')
+  const { nodes, materials, animations } = useGLTF('/Models/JesusSwing/Sword-transformed.glb')
   const { actions, names } = useAnimations(animations, group)
 
   let time = 0;
@@ -46,6 +46,6 @@ const SwordSwing = forwardRef((props, ref) => {
   )
 })
 
-useGLTF.preload('/../../../public/Models/JesusSwing/Sword-transformed.glb')
+useGLTF.preload('/Models/JesusSwing/Sword-transformed.glb')
 
 export default SwordSwing;

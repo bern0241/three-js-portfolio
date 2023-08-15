@@ -11,7 +11,7 @@ import * as THREE from 'three';
 
 const MiniJesusSwing = forwardRef((props, ref) => {
   const group = useRef()
-  const { nodes, materials, animations } = useGLTF('/../../../public/Models/JesusSwing/JesusSwing-transformed.glb')
+  const { nodes, materials, animations } = useGLTF('/Models/JesusSwing/JesusSwing-transformed.glb')
   const { actions, names, mixer } = useAnimations(animations, group)
   
   // const [startAnim, setStartAnim] = useState(true);
@@ -99,6 +99,6 @@ const MiniJesusSwing = forwardRef((props, ref) => {
 });
 
 
-useGLTF.preload('/../../../public/Models/JesusSwing/JesusSwing-transformed.glb')
+useGLTF.preload('/Models/JesusSwing/JesusSwing-transformed.glb')
 
 export default MiniJesusSwing;

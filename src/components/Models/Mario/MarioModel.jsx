@@ -14,7 +14,7 @@ import { GLTFLoader } from 'three-stdlib';
 
 const MarioModel = forwardRef((props, ref) => {
   const group = useRef()
-  const { nodes, materials, animations } = useGLTF('/../../../public/Models/Mario/MarioPlaying-transformed.glb', null, null, (error) => {
+  const { nodes, materials, animations } = useGLTF('/Models/Mario/MarioPlaying-transformed.glb', null, null, (error) => {
     console.error('Error loading model:', error);
   });
   const { actions, names, mixer } = useAnimations(animations, group)
@@ -85,6 +85,6 @@ const Loading = styled.div`
   z-index: 4000;
 `
 
-useGLTF.preload('/../../../public/Models/Mario/MarioPlaying-transformed.glb')
+useGLTF.preload('/Models/Mario/MarioPlaying-transformed.glb')
 
 export default MarioModel;

@@ -36,5 +36,5 @@ export default function Mario(props) {
   )
 }
 
-useGLTF.preload('/../../../public/Models/Mario/Guitar-transformed.glb')
+useGLTF.preload('/Models/Mario/Guitar-transformed.glb')
 // useGLTF.preload('/MiniJesusSwing-transformed.glb')

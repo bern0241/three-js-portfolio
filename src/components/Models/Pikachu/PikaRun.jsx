@@ -9,7 +9,7 @@ import { useGLTF, useAnimations } from '@react-three/drei'
 
 export default function PikaRun(props) {
   const group = useRef()
-  const { nodes, materials, animations } = useGLTF('/../../../public/Models/Pikachu/PikaRun-transformed.glb')
+  const { nodes, materials, animations } = useGLTF('/Models/Pikachu/PikaRun-transformed.glb')
   const { actions, names, mixer } = useAnimations(animations, group)
 
   useEffect(() => {
@@ -35,4 +35,4 @@ export default function PikaRun(props) {
   )
 }
 
-useGLTF.preload('/PikaRun-transformed.glb')
+useGLTF.preload('/Models/Pikachu/PikaRun-transformed.glb')

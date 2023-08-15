@@ -17,18 +17,32 @@ const Section = styled.div`
   scroll-snap-align: center;
   display: flex;
   justify-content: center;
+  color: black;
+  font-size: 14px;
+  font-weight: 300;
+  position: relative;
 `
 
 const Container = styled.div`
   width: 1400px;
   display: flex; //separate Left and Right
   justify-content: space-between;
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    flex-direction: column; // COOL! like adams class grids
+  }
 `
 
 const Left = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
+
+  @media only screen and (max-width: 768px) {
+    padding: 20px;
+    justify-content: center;
+}
 `
   
 const List = styled.ul`
@@ -36,6 +50,9 @@ const List = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  @media only screen and (max-width: 768px) {
+    padding: 0px;
+}
 `
 
 const ListItem = styled.li`
@@ -45,6 +62,12 @@ const ListItem = styled.li`
   color: transparent;
   -webkit-text-stroke: 1px white;
   position: relative;       //PARENT??
+
+  @media only screen and (max-width: 768px) {
+    font-size: 24px;
+    color: white;
+    -webkit-text-stroke: 0px;
+  }
 
   &:after {
     content: "${(props) => props.text}"; //returns the text (item) of li props (below)
@@ -72,8 +95,7 @@ const ListItem = styled.li`
 
 const Right = styled.div`
   flex: 1;
-  position: relative;
-  top: -60px;
+  
 `
 
 const Works = () => {

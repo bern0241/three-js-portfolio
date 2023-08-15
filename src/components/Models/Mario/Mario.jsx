@@ -4,10 +4,11 @@ Command: npx gltfjsx@6.2.10 MiniJesusSwing.gltf --transform
 Files: MiniJesusSwing.gltf [8.04MB] > MiniJesusSwing-transformed.glb [352.22KB] (96%)
 */
 
-import React, { useRef, useEffect } from 'react'
-import { useGLTF, useAnimations } from '@react-three/drei'
+import React, { useRef, useEffect, Suspense  } from 'react'
+import { useGLTF, Html, useProgress } from '@react-three/drei'
 import MarioModel from "./MarioModel";
 import Guitar from './Guitar';
+import { styled } from 'styled-components'
 
 export default function Mario(props) {
   const group = useRef()
@@ -29,10 +30,11 @@ export default function Mario(props) {
 
   return (
     <group ref={group} {...props} dispose={null} onClick={(e) => handleParentFunction()}>
-      <MarioModel ref={child1} callParentFunction={handleParentFunction}  />
-      <Guitar ref={child2} callParentFunction={handleParentFunction} />
+        <MarioModel ref={child1} callParentFunction={handleParentFunction}  />
+        <Guitar ref={child2} callParentFunction={handleParentFunction} />
     </group>
   )
 }
 
+useGLTF.preload('/../../../public/Models/Mario/Guitar-transformed.glb')
 // useGLTF.preload('/MiniJesusSwing-transformed.glb')

@@ -4,14 +4,19 @@ Command: npx gltfjsx@6.2.10 MiniJesusSwing.gltf --transform
 Files: MiniJesusSwing.gltf [8.04MB] > MiniJesusSwing-transformed.glb [352.22KB] (96%)
 */
 
-import React, { useRef, useEffect, forwardRef, useImperativeHandle, useState } from 'react'
-import { useGLTF, useAnimations } from '@react-three/drei'
+import React, { useRef, useEffect, forwardRef, useImperativeHandle, Suspense } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three';
+import { styled } from 'styled-components'
+
+import { useGLTF, useAnimations } from '@react-three/drei'
+import { GLTFLoader } from 'three-stdlib';
 
 const MarioModel = forwardRef((props, ref) => {
   const group = useRef()
-  const { nodes, materials, animations } = useGLTF('/../../../public/Models/Mario/MarioPlaying-transformed.glb')
+  const { nodes, materials, animations } = useGLTF('/../../../public/Models/Mario/MarioPlaying-transformed.glb', null, null, (error) => {
+    console.error('Error loading model:', error);
+  });
   const { actions, names, mixer } = useAnimations(animations, group)
   
   // const [startAnim, setStartAnim] = useState(true);
@@ -74,6 +79,11 @@ const MarioModel = forwardRef((props, ref) => {
   )
 });
 
+const Loading = styled.div`
+  color: white;
+  font-size: 5rem;
+  z-index: 4000;
+`
 
 useGLTF.preload('/../../../public/Models/Mario/MarioPlaying-transformed.glb')
 

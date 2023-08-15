@@ -72,6 +72,8 @@ const ListItem = styled.li`
 
 const Right = styled.div`
   flex: 1;
+  position: relative;
+  top: -60px;
 `
 
 const Works = () => {

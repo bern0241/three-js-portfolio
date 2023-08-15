@@ -4,13 +4,16 @@ import { styled } from 'styled-components'
 const Section = styled.div`
   display: flex;
   justify-content: center;
-
+  width: 100%;
+  
   @media only screen and (max-width: 768px) {
     width: 100%;
   }
-`
+  `
 
 const Container = styled.div`
+  margin-left: 20px;
+  margin-right: 20px;
   width: 1400px;
   display: flex;
   justify-content: space-between;

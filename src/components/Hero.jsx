@@ -22,7 +22,8 @@ const Section = styled.div`
 const Container = styled.div`
   height: 100%;
   scroll-snap-align: center;
-  width: 1400px;
+  width: 100%;
+  max-width: 1400px;
   display: flex;
   justify-content: space-between;
 
@@ -36,6 +37,7 @@ const Container = styled.div`
 
 const Left = styled.div`
   flex: 2;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -151,7 +153,7 @@ const Hero = () => {
                     <OrbitControls enablePan={false} enableZoom={false} />
                     <ambientLight intensity={1}/>
                     <directionalLight position={[1, 2, 3]} />
-                    <Sphere args={[1, 100, 200]} scale={2.4} >
+                    <Sphere args={[1, 100, 200]} scale={2} >
                         <MeshDistortMaterial attach="material" distort={0.5} speed={2} color="#3d1c56"/>
                               {/* <meshStandardMaterial color="#3d1c56" attach="material" map={colorMap} /> */}
                     </Sphere>
